@@ -1,0 +1,29 @@
+plugins {
+  id "org.jetbrains.kotlin.jvm" version "1.3.31"
+  id 'org.jetbrains.dokka' version '0.9.18'
+}
+
+repositories {
+  mavenCentral()
+  jcenter()
+}
+
+dependencies {
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+task buildDependencies(type: Jar) {
+  baseName 'grand_dependencies'
+  from {
+    configurations.compile.collect {
+      it.isDirectory() ? it : zipTree(it)
+    }
+  }
+}
+
+jar {
+  baseName 'grand'
+  manifest {
+      attributes 'Main-Class': 'ramonbrand.grand.AppKt'
+  }
+}

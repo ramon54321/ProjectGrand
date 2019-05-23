@@ -1,0 +1,10 @@
+**/*.swp
+build
+target
+.gradle
+.DS_Store
+.classpath
+.project
+.settings
+.idea
+app.iml
